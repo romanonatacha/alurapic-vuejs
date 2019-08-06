@@ -15,17 +15,14 @@ export default {
   data() {
     return {
       titulo: 'Alurapic',
-      fotos: [
-        {
-          url: 'https://image.cnbcfm.com/api/v1/image/105992231-1561667465295gettyimages-521697453.jpeg?v=1561667497',
-          titulo: 'cachorro'
-        },
-        {
-          url: 'https://image.cnbcfm.com/api/v1/image/105992231-1561667465295gettyimages-521697453.jpeg?v=1561667497',
-          titulo: 'cachorrão'
-        }
-      ]
+      fotos: []
     }
+  },
+
+  created() {
+    this.$http.get('http://localhost:3000/v1/fotos')
+      .then(res => res.json())
+      .then(fotos => this.fotos = fotos, err => console.log(err));
   }
 }
 </script>
